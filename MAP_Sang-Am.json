@@ -1,0 +1,691 @@
+{
+    "name" : "Sang-Am",
+    "roads" :
+    [
+        {
+            "road_id" : "R1",
+            "lane" : ["1", "2", "1TR"],
+            "lane_id" : [1, 2, 3],
+            "connection" :
+            [
+                {
+                    "road_id" : "R3",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I6", "I1"]
+        },
+        {
+            "road_id" : "R2",
+            "lane" : ["1HL", "1", "2", "1HR"],
+            "lane_id" : [4, 5, 6, 7],
+            "connection" :
+            [
+                {
+                    "road_id" : "R1",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R11",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R14",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+
+            ],
+            "intersection" : ["I1", "I6"]
+        },
+        {
+            "road_id" : "R3",
+            "lane" : ["1HL", "1", "2", "1HR"],
+            "lane_id" : [8, 9, 10, 11],
+            "connection" :
+            [
+                {
+                    "road_id" : "R4",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R5",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I1", "I2"]
+        },
+        {
+            "road_id" : "R4",
+            "lane" : ["1", "2", "1TR"],
+            "lane_id" : [12, 13, 14],
+            "connection" :
+            [
+                {
+                    "road_id" : "R2",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I2", "I1"]
+        },
+        {
+            "road_id" : "R5",
+            "lane" : ["1", "2", "3"],
+            "lane_id" : [15, 16, 17],
+            "connection" :
+            [
+                {
+                    "road_id" : "R8",
+                    "lane_cond" : ["3"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R6",
+                    "lane_cond" : ["1"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I2", "I3"]
+        },
+        {
+            "road_id" : "R6",
+            "lane" : ["1", "2", "3"],
+            "lane_id" : [18, 19, 20],
+            "connection" :
+            [
+                {
+                    "road_id" : "R4",
+                    "lane_cond" : ["1"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R5",
+                    "lane_cond" : ["1"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I3", "I2"]
+        },
+        {
+            "road_id" : "R7",
+            "lane" : ["1HL", "1", "2", "1HR"],
+            "lane_id" : [21, 22, 23, 24],
+            "connection" :
+            [
+                {
+                    "road_id" : "R6",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R8",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I4", "I3"]
+        },
+        {
+            "road_id" : "R8",
+            "lane" : ["1", "2", "1TR"],
+            "lane_id" : [26, 27, 28],
+            "connection" :
+            [
+                {
+                    "road_id" : "R10",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I3", "I4"]
+        },
+        {
+            "road_id" : "R9",
+            "lane" : ["1", "2", "1TR"],
+            "lane_id" : [29, 30, 31],
+            "connection" :
+            [
+                {
+                    "road_id" : "R7",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I5", "I4"]
+        },
+        {
+            "road_id" : "R10",
+            "lane" : ["1HL", "1", "2", "1HR"],
+            "lane_id" : [32, 33, 34, 35],
+            "connection" :
+            [
+                {
+                    "road_id" : "R9",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R12",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R29",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R32",
+                    "lane_cond" : ["1", "2", "1HR"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I4", "I5"]
+        },
+        {
+            "road_id" : "R11",
+            "lane" : ["1HL", "1", "2", "3", "4"],
+            "lane_id" : [36, 37, 38, 39, 40],
+            "connection" :
+            [
+                {
+                    "road_id" : "R9",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R12",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R29",
+                    "lane_cond" : ["1", "2", "3", "4"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R32",
+                    "lane_cond" : ["4"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I6", "I5"]
+        },
+        {
+            "road_id" : "R12",
+            "lane" : ["1HL", "1", "2", "3", "4"],
+            "lane_id" : [41, 42, 43, 44, 45],
+            "connection" :
+            [
+                {
+                    "road_id" : "R1",
+                    "lane_cond" : ["4"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R11",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R14",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I5", "I6"]
+        },
+        {
+            "road_id" : "R13",
+            "lane" : ["1", "2", "3", "1HR"],
+            "lane_id" : [46, 47, 48, 49],
+            "connection" :
+            [
+                {
+                    "road_id" : "R1",
+                    "lane_cond" : ["1", "2", "3"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R11",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I7", "I6"]
+        },
+        {
+            "road_id" : "R14",
+            "lane" : ["1", "2"],
+            "lane_id" : [50, 51],
+            "connection" :
+            [
+                {
+                    "road_id" : "R16",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I6", "I7"]
+        },
+        {
+            "road_id" : "R15",
+            "lane" : ["1HL", "1", "2", "1TR"],
+            "lane_id" : [52, 53, 54, 55],
+            "connection" :
+            [
+                {
+                    "road_id" : "R13",
+                    "lane_cond" : ["1HL", "1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I8", "I7"]
+        },
+        {
+            "road_id" : "R16",
+            "lane" : ["1", "2"],
+            "lane_id" : [56, 57],
+            "connection" :
+            [
+                {
+                    "road_id" : "R18",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I7", "I8"]
+        },
+        {
+            "road_id" : "R17",
+            "lane" : ["1", "2"],
+            "lane_id" : [58, 59],
+            "connection" :
+            [
+                {
+                    "road_id" : "R15",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R16",
+                    "lane_cond" : ["1"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I9", "I8"]
+        },
+        {
+            "road_id" : "R18",
+            "lane" : ["1", "2", "1TR"],
+            "lane_id" : [60, 61, 62],
+            "connection" :
+            [
+                {
+                    "road_id" : "R19",
+                    "lane_cond" : ["1"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I8", "I9"]
+        },
+        {
+            "road_id" : "R19",
+            "lane" : ["1HL", "1", "2"],
+            "lane_id" : [63, 64, 65],
+            "connection" :
+            [
+                {
+                    "road_id" : "R21",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R33",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I9", "I10"]
+        },
+        {
+            "road_id" : "R20",
+            "lane" : ["1", "2", "1HR"],
+            "lane_id" : [66, 67, 68],
+            "connection" :
+            [
+                {
+                    "road_id" : "R17",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I10", "I9"]
+        },
+        {
+            "road_id" : "R21",
+            "lane" : ["1HL", "1", "2"],
+            "lane_id" : [69, 70, 71],
+            "connection" :
+            [
+                {
+                    "road_id" : "R23",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I10", "I11"]
+        },
+        {
+            "road_id" : "R22",
+            "lane" : ["1", "2", "1HR"],
+            "lane_id" : [72, 73, 74],
+            "connection" :
+            [
+                {
+                    "road_id" : "R20",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R33",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I11", "I10"]
+        },
+        {
+            "road_id" : "R23",
+            "lane" : ["1HL", "1", "2"],
+            "lane_id" : [75, 76, 77],
+            "connection" :
+            [
+                {
+                    "road_id" : "R25",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I11", "I12"]
+        },
+        {
+            "road_id" : "R24",
+            "lane" : ["1", "2", "3"],
+            "lane_id" : [78, 79, 80],
+            "connection" :
+            [
+                {
+                    "road_id" : "R22",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I12", "I11"]
+        },
+        {
+            "road_id" : "R25",
+            "lane" : ["1", "2", "3"],
+            "lane_id" : [81, 82, 83],
+            "connection" :
+            [
+                {
+                    "road_id" : "R27",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I12", "I13"]
+        },
+        {
+            "road_id" : "R26",
+            "lane" : ["1", "2", "1HR"],
+            "lane_id" : [84, 85, 86],
+            "connection" :
+            [
+                {
+                    "road_id" : "R24",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R25",
+                    "lane_cond" : ["1"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I13", "I12"]
+        },
+        {
+            "road_id" : "R27",
+            "lane" : ["1HL", "1", "2"],
+            "lane_id" : [87, 88, 89],
+            "connection" :
+            [
+                {
+                    "road_id" : "R28",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R30",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I13", "I14"]
+        },
+        {
+            "road_id" : "R28",
+            "lane" : ["1HL", "1", "2", "1TR"],
+            "lane_id" : [90, 91, 92, 93],
+            "connection" :
+            [
+                {
+                    "road_id" : "R26",
+                    "lane_cond" : ["1", "2"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I14", "I13"]
+        },
+        {
+            "road_id" : "R29",
+            "lane" : ["1HL", "1", "2", "3", "4", "1HR"],
+            "lane_id" : [94, 95, 96, 97, 98, 99],
+            "connection" :
+            [
+                {
+                    "road_id" : "R28",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R30",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I5", "I14"]
+        },
+        {
+            "road_id" : "R30",
+            "lane" : ["1HL", "1", "2", "3", "1TR", "1HR"],
+            "lane_id" : [100, 101, 102, 103, 104, 105],
+            "connection" :
+            [
+                {
+                    "road_id" : "R9",
+                    "lane_cond" : ["1HR"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R12",
+                    "lane_cond" : ["1", "2", "3"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R29",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R32",
+                    "lane_cond" : ["1HL"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I14", "I5"]
+        },
+        {
+            "road_id" : "R31",
+            "lane" : ["1", "2", "3"],
+            "lane_id" : [106, 107, 108],
+            "connection" :
+            [
+                {
+                    "road_id" : "R9",
+                    "lane_cond" : ["2", "3"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R12",
+                    "lane_cond" : ["1"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R29",
+                    "lane_cond" : ["3"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R32",
+                    "lane_cond" : ["1"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I15", "I5"]
+        },
+        {
+            "road_id" : "R32",
+            "lane" : ["1", "2", "3", "1TR"],
+            "lane_id" : [109, 110, 111, 112],
+            "connection" :
+            [
+                {
+                    "road_id" : "R34",
+                    "lane_cond" : ["1", "2", "3"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I5", "I15"]
+        },
+        {
+            "road_id" : "R33",
+            "lane" : ["1", "2", "3"],
+            "lane_id" : [113, 114, 115],
+            "connection" :
+            [
+                {
+                    "road_id" : "R34",
+                    "lane_cond" : ["1", "2", "3"],
+                    "pass_type" : "Straight",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I10", "I15"]
+        },
+        {
+            "road_id" : "R34",
+            "lane" : ["1", "2", "3"],
+            "lane_id" : [116, 117, 118],
+            "connection" :
+            [
+                {
+                    "road_id" : "R20",
+                    "lane_cond" : ["2", "3"],
+                    "pass_type" : "Right",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R21",
+                    "lane_cond" : ["1"],
+                    "pass_type" : "Left",
+                    "cost" : 0
+                },
+                {
+                    "road_id" : "R33",
+                    "lane_cond" : ["1"],
+                    "pass_type" : "U_Turn",
+                    "cost" : 0
+                }
+            ],
+            "intersection" : ["I15", "I10"]
+        }
+    ]
+}
