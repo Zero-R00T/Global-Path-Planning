@@ -28,7 +28,12 @@ NodePtr MakeNode()
     temp->link = NULL;
     return temp;
 }
-
+void DeleteNode(NodePtr temp)
+{
+    if(temp->link != NULL)
+        DeleteNode(temp->link);
+    delete temp;
+}
 void match_lane(NodePtr * temp, std::string str, int k)
 {
     if(str == "1")
@@ -139,9 +144,9 @@ int main()
         }
         std::cout << std::endl;
     }
-    for (int i = 0; i < (int)roads.size(); i++) // 34개의 도로! 노드 삭제들어간다!
+    for (int i = 0; i < road_num; i++) // 34개의 도로! 노드 삭제들어간다!
     {
-        delete HeadList[i];
+        DeleteNode(HeadList[i]);
     }
 
     return 0;
