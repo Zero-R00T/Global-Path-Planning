@@ -36,7 +36,7 @@ class Linked_List
 
         int road_num = (int)g_roads.size();
 
-        NodePtr *HeadList = new NodePtr[road_num + 1]; 
+        NodePtr * HeadList = new NodePtr[road_num + 1]; 
         for (int i = 0; i < road_num + 1 ; i++)
             HeadList[i] = NULL;
         // HeadList 초기화 & 동적할당 풀 때 편하게 하기 위해 끝에 NULL 넣음
@@ -71,8 +71,7 @@ class Linked_List
 
     void ShowList(NodePtr * HeadList)
     {
-        int road_num = 0;
-        for ( ; HeadList[road_num] != NULL; road_num++)
+        for (int road_num = 0; HeadList[road_num] != NULL; road_num++)
         {
             std::cout << "Head index : " << road_num << "  ";
             ShowNode(HeadList[road_num]);
