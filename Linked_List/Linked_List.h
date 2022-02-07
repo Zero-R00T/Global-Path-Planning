@@ -10,17 +10,23 @@ Json::Value g_root;
 Json::Value g_roads;
 Json::Value g_connection;
 
-enum lane
+enum Lane
 {
-    empty,_1, _2, _3, _4, _5, _1HL, _1HR, _1TL, _1TR
+    L_empty,_1, _2, _3, _4, _5, _1HL, _1HR, _1TL, _1TR
 };
-
+enum Passtype
+{
+    P_empty, Straight, Right, Left, U_Turn
+};
+static const char * Lane_str[] = {"", "1", "2", "3", "4", "5", "1HL", "1HR", "1TL", "1TR"};
+static const char * Passtype_str[] = {"", "Straight", "Right", "Left", "U_Turn"};
 typedef struct Node * NodePtr;
 struct Node
 {
     std::string road;
     int cost;
-    lane lanes[MAX_LANE_NUM];
+    Lane lanes[MAX_LANE_NUM];
+    Passtype passtype;
     NodePtr * HeadAd;
     NodePtr link;
 };
@@ -49,15 +55,18 @@ class Linked_List
             {
                 NodePtr LastNode;
                 NodePtr NewNode;
+                std::string str;
                    
                 NewNode = MakeNode(); //노드 생성
                 NewNode->road = g_connection[j]["road"].asString(); //첫째칸 road name 입력
                 NewNode->cost += g_connection[j]["cost"].asFloat(); //둘재칸 cost offset 입력
                 for(int k = 0; k < (int)g_connection[j]["lane_cond"].size(); k++) //셋째칸 차선 조건 배열 입력
                 {
-                    std::string str = g_connection[j]["lane_cond"][k].asString();
-                    MatchLane(&NewNode, str, k);
+                    str = g_connection[j]["lane_cond"][k].asString();
+                    MatchLane(NewNode, str, k);
                 }
+                str = g_connection[j]["pass_type"].asString();
+                MatchPasstype(NewNode, str);
                 NewNode->HeadAd = &HeadList[g_connection[j]["road_id"].asInt() - 1]; //HeadList 주소 입력
                 if(j == 0)
                     HeadList[i] = NewNode; //HealList에 연결
@@ -94,7 +103,8 @@ class Linked_List
         temp->road = {};
         temp->cost = 0;
         for (int i=0; i < MAX_LANE_NUM; i++)
-            temp->lanes[i] = empty;
+            temp->lanes[i] = L_empty;
+        temp->passtype = P_empty;
         temp->HeadAd = NULL;
         temp->link = NULL;
         return temp;
@@ -115,8 +125,9 @@ class Linked_List
         }
         std::cout << "[Road : " << temp->road << "  Cost : " << temp->cost << "  connected_lane : ";
         for(int i=0;i<MAX_LANE_NUM;i++)
-            std::cout << temp->lanes[i] << " ";
-        std::cout << "  Adress : " << temp->HeadAd << "]   ";
+            if (temp->lanes[i] != 0)
+                std::cout << Lane_str[temp->lanes[i]] << " ";
+        std::cout << " pass_type : " << Passtype_str[temp->passtype] << "  Adress : " << temp->HeadAd << "]   ";
     }
 
     int MapParsing()
@@ -140,27 +151,41 @@ class Linked_List
         return 0;
     }
 
-    void MatchLane(NodePtr * temp, std::string str, int k)
+    void MatchLane(Node * temp, std::string str, int k)
     {
         if(str == "1")
-            (*temp)->lanes[k] = _1;
+            temp->lanes[k] = _1;
         else if(str == "2")
-            (*temp)->lanes[k] = _2;
+            temp->lanes[k] = _2;
         else if(str == "3")
-            (*temp)->lanes[k] = _3;
+            temp->lanes[k] = _3;
         else if(str == "4")
-            (*temp)->lanes[k] = _4;
+            temp->lanes[k] = _4;
         else if(str == "5")
-            (*temp)->lanes[k] = _5;
+            temp->lanes[k] = _5;
         else if(str == "1HL")
-            (*temp)->lanes[k] = _1HL;
+            temp->lanes[k] = _1HL;
         else if(str == "1HR")
-            (*temp)->lanes[k] = _1HR;
+            temp->lanes[k] = _1HR;
         else if(str == "1TL")
-            (*temp)->lanes[k] = _1TL;
+            temp->lanes[k] = _1TL;
         else if(str == "1TR")
-            (*temp)->lanes[k] = _1TR;
+            temp->lanes[k] = _1TR;
         else
-            (*temp)->lanes[k] = empty;
+            temp->lanes[k] = L_empty;
+    }
+
+    void MatchPasstype(Node * temp, std::string str)
+    {
+        if(str == "Straight")
+            temp->passtype = Straight;
+        else if(str == "Right")
+            temp->passtype = Right;
+        else if(str == "Left")
+            temp->passtype = Left;
+        else if(str == "U_Turn")
+            temp->passtype = U_Turn;
+        else
+            temp->passtype = P_empty;
     }
 };
