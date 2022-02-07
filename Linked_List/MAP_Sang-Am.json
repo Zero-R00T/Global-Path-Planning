@@ -5,6 +5,7 @@
         {
             "road" : "R1",
             "road_id" : 1,
+            "road_length" : 125,
             "lane" : ["1", "2", "1TR"],
             "lane_id" : [1, 2, 3],
             "connection" :
@@ -22,6 +23,7 @@
         {
             "road" : "R2",
             "road_id" : 2,
+            "road_length" : 124,
             "lane" : ["1HL", "1", "2", "1HR"],
             "lane_id" : [4, 5, 6, 7],
             "connection" :
@@ -54,6 +56,7 @@
         {
             "road" : "R3",
             "road_id" : 3,
+            "road_length" : 114,
             "lane" : ["1HL", "1", "2", "1HR"],
             "lane_id" : [8, 9, 10, 11],
             "connection" :
@@ -78,6 +81,7 @@
         {
             "road" : "R4",
             "road_id" : 4,
+            "road_length" : 114,
             "lane" : ["1", "2", "1TR"],
             "lane_id" : [12, 13, 14],
             "connection" :
@@ -95,6 +99,7 @@
         {
             "road" : "R5",
             "road_id" : 5,
+            "road_length" : 133,
             "lane" : ["1", "2", "3"],
             "lane_id" : [15, 16, 17],
             "connection" :
@@ -119,6 +124,7 @@
         {
             "road" : "R6",
             "road_id" : 6,
+            "road_length" : 133,
             "lane" : ["1", "2", "3"],
             "lane_id" : [18, 19, 20],
             "connection" :
@@ -143,6 +149,7 @@
         {
             "road" : "R7",
             "road_id" : 7,
+            "road_length" : 113,
             "lane" : ["1HL", "1", "2", "1HR"],
             "lane_id" : [21, 22, 23, 24],
             "connection" :
@@ -167,6 +174,7 @@
         {
             "road" : "R8",
             "road_id" : 8,
+            "road_length" : 113,
             "lane" : ["1", "2", "1TR"],
             "lane_id" : [26, 27, 28],
             "connection" :
@@ -184,6 +192,7 @@
         {
             "road" : "R9",
             "road_id" : 9,
+            "road_length" : 116,
             "lane" : ["1", "2", "1TR"],
             "lane_id" : [29, 30, 31],
             "connection" :
@@ -201,6 +210,7 @@
         {
             "road" : "R10",
             "road_id" : 10,
+            "road_length" : 116,
             "lane" : ["1HL", "1", "2", "1HR"],
             "lane_id" : [32, 33, 34, 35],
             "connection" :
@@ -239,6 +249,7 @@
         {
             "road" : "R11",
             "road_id" : 11,
+            "road_length" : 121,
             "lane" : ["1HL", "1", "2", "3", "4"],
             "lane_id" : [36, 37, 38, 39, 40],
             "connection" :
@@ -277,6 +288,7 @@
         {
             "road" : "R12",
             "road_id" : 12,
+            "road_length" : 121,
             "lane" : ["1HL", "1", "2", "3", "4"],
             "lane_id" : [41, 42, 43, 44, 45],
             "connection" :
@@ -308,6 +320,7 @@
         {
             "road" : "R13",
             "road_id" : 13,
+            "road_length" : 82,
             "lane" : ["1", "2", "3", "1HR"],
             "lane_id" : [46, 47, 48, 49],
             "connection" :
@@ -332,6 +345,7 @@
         {
             "road" : "R14",
             "road_id" : 14,
+            "road_length" : 78,
             "lane" : ["1", "2"],
             "lane_id" : [50, 51],
             "connection" :
@@ -349,6 +363,7 @@
         {
             "road" : "R15",
             "road_id" : 15,
+            "road_length" : 26,
             "lane" : ["1HL", "1", "2", "1TR"],
             "lane_id" : [52, 53, 54, 55],
             "connection" :
@@ -366,6 +381,7 @@
         {
             "road" : "R16",
             "road_id" : 16,
+            "road_length" : 30,
             "lane" : ["1", "2"],
             "lane_id" : [56, 57],
             "connection" :
@@ -383,6 +399,7 @@
         {
             "road" : "R17",
             "road_id" : 17,
+            "road_length" : 89,
             "lane" : ["1", "2"],
             "lane_id" : [58, 59],
             "connection" :
@@ -407,6 +424,7 @@
         {
             "road" : "R18",
             "road_id" : 18,
+            "road_length" : 93,
             "lane" : ["1", "2", "1TR"],
             "lane_id" : [60, 61, 62],
             "connection" :
@@ -424,6 +442,7 @@
         {
             "road" : "R19",
             "road_id" : 19,
+            "road_length" : 139,
             "lane" : ["1HL", "1", "2"],
             "lane_id" : [63, 64, 65],
             "connection" :
@@ -448,6 +467,7 @@
         {
             "road" : "R20",
             "road_id" : 20,
+            "road_length" : 144,
             "lane" : ["1", "2", "1HR"],
             "lane_id" : [66, 67, 68],
             "connection" :
@@ -465,6 +485,7 @@
         {
             "road" : "R21",
             "road_id" : 21,
+            "road_length" : 151,
             "lane" : ["1HL", "1", "2"],
             "lane_id" : [69, 70, 71],
             "connection" :
@@ -482,6 +503,7 @@
         {
             "road" : "R22",
             "road_id" : 22,
+            "road_length" : 135,
             "lane" : ["1", "2", "1HR"],
             "lane_id" : [72, 73, 74],
             "connection" :
@@ -506,6 +528,7 @@
         {
             "road" : "R23",
             "road_id" : 23,
+            "road_length" : 83,
             "lane" : ["1HL", "1", "2"],
             "lane_id" : [75, 76, 77],
             "connection" :
@@ -523,6 +546,7 @@
         {
             "road" : "R24",
             "road_id" : 24,
+            "road_length" : 84,
             "lane" : ["1", "2", "3"],
             "lane_id" : [78, 79, 80],
             "connection" :
@@ -540,6 +564,7 @@
         {
             "road" : "R25",
             "road_id" : 25,
+            "road_length" : 73,
             "lane" : ["1", "2", "3"],
             "lane_id" : [81, 82, 83],
             "connection" :
@@ -557,6 +582,7 @@
         {
             "road" : "R26",
             "road_id" : 26,
+            "road_length" : 74,
             "lane" : ["1", "2", "1HR"],
             "lane_id" : [84, 85, 86],
             "connection" :
@@ -581,6 +607,7 @@
         {
             "road" : "R27",
             "road_id" : 27,
+            "road_length" : 153,
             "lane" : ["1HL", "1", "2"],
             "lane_id" : [87, 88, 89],
             "connection" :
@@ -605,6 +632,7 @@
         {
             "road" : "R28",
             "road_id" : 28,
+            "road_length" : 152,
             "lane" : ["1HL", "1", "2", "1TR"],
             "lane_id" : [90, 91, 92, 93],
             "connection" :
@@ -622,6 +650,7 @@
         {
             "road" : "R29",
             "road_id" : 29,
+            "road_length" : 230,
             "lane" : ["1HL", "1", "2", "3", "4", "1HR"],
             "lane_id" : [94, 95, 96, 97, 98, 99],
             "connection" :
@@ -646,6 +675,7 @@
         {
             "road" : "R30",
             "road_id" : 30,
+            "road_length" : 228,
             "lane" : ["1HL", "1", "2", "3", "1TR", "1HR"],
             "lane_id" : [100, 101, 102, 103, 104, 105],
             "connection" :
@@ -684,6 +714,7 @@
         {
             "road" : "R31",
             "road_id" : 31,
+            "road_length" : 112,
             "lane" : ["1", "2", "3"],
             "lane_id" : [106, 107, 108],
             "connection" :
@@ -722,6 +753,7 @@
         {
             "road" : "R32",
             "road_id" : 32,
+            "road_length" : 112,
             "lane" : ["1", "2", "3", "1TR"],
             "lane_id" : [109, 110, 111, 112],
             "connection" :
@@ -739,6 +771,7 @@
         {
             "road" : "R33",
             "road_id" : 33,
+            "road_length" : 145,
             "lane" : ["1", "2", "3"],
             "lane_id" : [113, 114, 115],
             "connection" :
@@ -756,6 +789,7 @@
         {
             "road" : "R34",
             "road_id" : 34,
+            "road_length" : 144,
             "lane" : ["1", "2", "3"],
             "lane_id" : [116, 117, 118],
             "connection" :
