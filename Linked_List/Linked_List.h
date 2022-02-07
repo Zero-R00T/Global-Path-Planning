@@ -9,6 +9,8 @@
 Json::Value g_root;
 Json::Value g_roads;
 Json::Value g_connection;
+static const char * g_Lane_str[] = {"", "1", "2", "3", "4", "5", "1HL", "1HR", "1TL", "1TR"};
+static const char * g_Passtype_str[] = {"", "Straight", "Right", "Left", "U_Turn"};
 
 enum Lane
 {
@@ -18,8 +20,6 @@ enum Passtype
 {
     P_empty, Straight, Right, Left, U_Turn
 };
-static const char * Lane_str[] = {"", "1", "2", "3", "4", "5", "1HL", "1HR", "1TL", "1TR"};
-static const char * Passtype_str[] = {"", "Straight", "Right", "Left", "U_Turn"};
 typedef struct Node * NodePtr;
 struct Node
 {
@@ -126,8 +126,8 @@ class Linked_List
         std::cout << "[Road : " << temp->road << "  Cost : " << temp->cost << "  connected_lane : ";
         for(int i=0;i<MAX_LANE_NUM;i++)
             if (temp->lanes[i] != 0)
-                std::cout << Lane_str[temp->lanes[i]] << " ";
-        std::cout << " pass_type : " << Passtype_str[temp->passtype] << "  Adress : " << temp->HeadAd << "]   ";
+                std::cout << g_Lane_str[temp->lanes[i]] << " ";
+        std::cout << " pass_type : " << g_Passtype_str[temp->passtype] << "  Adress : " << temp->HeadAd << "]   ";
     }
 
     int MapParsing()
