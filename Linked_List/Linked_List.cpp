@@ -8,6 +8,8 @@ int main()
 
     MAP = list.MakeList();
     list.ShowList(MAP);
+    list.CostFunction(MAP);
+    list.ShowList(MAP);
     list.DeleteList(MAP);
     
     return 0;

@@ -49,24 +49,24 @@ class Linked_List
         
         for (int i = 0; i < road_num; i++) // road 갯수만큼 노드 생성
         {
+            NodePtr LastNode = NULL;
             g_connection = g_roads[i]["connection"];
 
             for (int j = 0; j < (int)g_connection.size(); j++)
             {
-                NodePtr LastNode;
-                NodePtr NewNode;
+                
                 std::string str;
                    
-                NewNode = MakeNode(); //노드 생성
+                NodePtr NewNode = MakeNode(); //노드 생성
                 NewNode->road = g_connection[j]["road"].asString(); //첫째칸 road name 입력
                 NewNode->cost += g_connection[j]["cost"].asFloat(); //둘재칸 cost offset 입력
                 for(int k = 0; k < (int)g_connection[j]["lane_cond"].size(); k++) //셋째칸 차선 조건 배열 입력
                 {
                     str = g_connection[j]["lane_cond"][k].asString();
-                    MatchLane(NewNode, str, k);
+                    NewNode->lanes[k] = MatchLane(str);
                 }
                 str = g_connection[j]["pass_type"].asString();
-                MatchPasstype(NewNode, str);
+                NewNode->passtype = MatchPasstype(str);
                 NewNode->HeadAd = &HeadList[g_connection[j]["road_id"].asInt() - 1]; //HeadList 주소 입력
                 if(j == 0)
                     HeadList[i] = NewNode; //HealList에 연결
@@ -80,10 +80,10 @@ class Linked_List
 
     void ShowList(NodePtr * HeadList)
     {
-        for (int road_num = 0; HeadList[road_num] != NULL; road_num++)
+        for (int i = 0; HeadList[i] != NULL; i++)
         {
-            std::cout << "Head index : " << road_num << "  ";
-            ShowNode(HeadList[road_num]);
+            std::cout << "Head index : " << i << "  ";
+            ShowNode(HeadList[i]);
             std::cout << std::endl;
         }
     }
@@ -94,8 +94,44 @@ class Linked_List
             DeleteNode(HeadList[i]);
         delete HeadList;
     }
+
+    void CostFunction(NodePtr * HeadList)
+    {
+        float road_length = 0;
+        int lane_num = 0;
+        Passtype passtype = P_empty;
+        int lane_cond_num = 0;
+        for (int i = 0; HeadList[i] != NULL; i++)
+        {
+            NodePtr LastNode = HeadList[i];
+            g_connection = g_roads[i]["connection"];
+            road_length = g_roads[i]["road_length"].asFloat();
+            lane_num = (int)g_roads[i]["lane"].size();
+            for (int j = 0; j < (int)g_connection.size(); j++)
+            {
+                passtype = MatchPasstype(g_connection[j]["pass_type"].asString());
+                lane_cond_num = (int)g_connection[j]["lane_cond"].size();
+                LastNode->cost += CaluculateCost(road_length, lane_num, passtype, lane_cond_num);
+                LastNode = LastNode->link;              
+            }
+        }
+    }
     
     private:
+
+    float CaluculateCost(float road_length, int lane_num, Passtype passtype, int lane_cond_num)
+    {
+        float cost_sum = 0;
+        float coef_road_length(1), coef_lane_num(1), coef_lane_cond_num(1);
+        float coef_passtype[5] = {10000000, 1, 1, 1, 1};
+
+        cost_sum += coef_road_length * road_length;
+        cost_sum += coef_lane_num * lane_num;
+        cost_sum += coef_lane_cond_num * lane_cond_num;
+        cost_sum += coef_passtype[passtype];
+
+        return cost_sum;
+    }
 
     NodePtr MakeNode()
     {
@@ -151,41 +187,41 @@ class Linked_List
         return 0;
     }
 
-    void MatchLane(Node * temp, std::string str, int k)
+    Lane MatchLane(std::string str)
     {
         if(str == "1")
-            temp->lanes[k] = _1;
+            return _1;
         else if(str == "2")
-            temp->lanes[k] = _2;
+            return _2;
         else if(str == "3")
-            temp->lanes[k] = _3;
+            return _3;
         else if(str == "4")
-            temp->lanes[k] = _4;
+            return _4;
         else if(str == "5")
-            temp->lanes[k] = _5;
+            return _5;
         else if(str == "1HL")
-            temp->lanes[k] = _1HL;
+            return _1HL;
         else if(str == "1HR")
-            temp->lanes[k] = _1HR;
+            return _1HR;
         else if(str == "1TL")
-            temp->lanes[k] = _1TL;
+            return _1TL;
         else if(str == "1TR")
-            temp->lanes[k] = _1TR;
+            return _1TR;
         else
-            temp->lanes[k] = L_empty;
+            return L_empty;
     }
 
-    void MatchPasstype(Node * temp, std::string str)
+    Passtype MatchPasstype(std::string str)
     {
         if(str == "Straight")
-            temp->passtype = Straight;
+            return Straight;
         else if(str == "Right")
-            temp->passtype = Right;
+            return Right;
         else if(str == "Left")
-            temp->passtype = Left;
+            return Left;
         else if(str == "U_Turn")
-            temp->passtype = U_Turn;
+            return U_Turn;
         else
-            temp->passtype = P_empty;
+            return P_empty;
     }
 };
