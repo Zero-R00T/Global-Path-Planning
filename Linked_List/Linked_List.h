@@ -23,8 +23,8 @@ enum Passtype
 typedef struct Node * NodePtr;
 struct Node
 {
-    std::string road;
-    int cost;
+    int road_id;
+    float cost;
     Lane lanes[MAX_LANE_NUM];
     Passtype passtype;
     NodePtr * HeadAd;
@@ -58,7 +58,7 @@ class Linked_List
                 std::string str;
                    
                 NodePtr NewNode = MakeNode(); //노드 생성
-                NewNode->road = g_connection[j]["road"].asString(); //첫째칸 road name 입력
+                NewNode->road_id = g_connection[j]["road_id"].asInt(); //첫째칸 road_id 입력
                 NewNode->cost += g_connection[j]["cost"].asFloat(); //둘재칸 cost offset 입력
                 for(int k = 0; k < (int)g_connection[j]["lane_cond"].size(); k++) //셋째칸 차선 조건 배열 입력
                 {
@@ -67,7 +67,7 @@ class Linked_List
                 }
                 str = g_connection[j]["pass_type"].asString();
                 NewNode->passtype = MatchPasstype(str);
-                NewNode->HeadAd = &HeadList[g_connection[j]["road_id"].asInt() - 1]; //HeadList 주소 입력
+                NewNode->HeadAd = &HeadList[NewNode->road_id - 1]; //HeadList 주소 입력
                 if(j == 0)
                     HeadList[i] = NewNode; //HealList에 연결
                 else
@@ -92,7 +92,7 @@ class Linked_List
     {
         for (int i=0; HeadList[i] != NULL; i++) // HeadList 마지막에 NULL 들어있음
             DeleteNode(HeadList[i]);
-        delete HeadList;
+        delete []HeadList;
     }
 
     void CostFunction(NodePtr * HeadList)
@@ -121,9 +121,10 @@ class Linked_List
 
     float CaluculateCost(float road_length, int lane_num, Passtype passtype, int lane_cond_num)
     {
+        //임시적인 cost 계산법 추후에 수정필요
         float cost_sum = 0;
         float coef_road_length(1), coef_lane_num(1), coef_lane_cond_num(1);
-        float coef_passtype[5] = {10000000, 1, 1, 1, 1};
+        float coef_passtype[5] = {10000000, 100, 85, 150, 200};
 
         cost_sum += coef_road_length * road_length;
         cost_sum += coef_lane_num * lane_num;
@@ -136,7 +137,7 @@ class Linked_List
     NodePtr MakeNode()
     {
         NodePtr temp = new Node;
-        temp->road = {};
+        temp->road_id = 0;
         temp->cost = 0;
         for (int i=0; i < MAX_LANE_NUM; i++)
             temp->lanes[i] = L_empty;
@@ -159,7 +160,7 @@ class Linked_List
         {
             ShowNode(temp->link);
         }
-        std::cout << "[Road : " << temp->road << "  Cost : " << temp->cost << "  connected_lane : ";
+        std::cout << "[Road : R" << temp->road_id << "  Cost : " << temp->cost << "  connected_lane : ";
         for(int i=0;i<MAX_LANE_NUM;i++)
             if (temp->lanes[i] != 0)
                 std::cout << g_Lane_str[temp->lanes[i]] << " ";
