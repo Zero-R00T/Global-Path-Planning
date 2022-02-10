@@ -77,7 +77,8 @@ class Path_Finder
                     NewBead->upper_bead = LastBead;
                     NewBead->road_id = NowNode->road_id;
                     NewBead->cost_sum = LastBead->cost_sum + NowNode->cost; // 부모 bead의 cost_sum에 현재 bead의 cost를 더해서 저장한다.
-                    *(NewBead->checklist) = *(LastBead->checklist); // 부모 bead의 checklist를 복사한다.
+                    for (int p = 0; p < road_num; p++)
+                        NewBead->checklist[p] = LastBead->checklist[p]; // 부모 bead의 checklist를 복사한다.
                     NewBead->checklist[NewBead->road_id - 1] += 1; // 복사한 checklist에 현제 bead의 도로 id를 표시한다.
 
                     if(j == 0 && k == 0)
@@ -93,10 +94,14 @@ class Path_Finder
             LastDepth->lower_depth = NewDepth; // NewDepth 연결
             LastDepth = NewDepth; // LastDepth 이동
 
+            // std::cout << "[original beads]" <<std::endl; 
+            // ShowDepth(LastDepth);
+
             CheckBeads(LastDepth, goal, &final_bead, &Min_cost_sum, road_num); // goal 찾았는지 확인, 희망없는 후보군 탈락
 
             if (LastDepth->bead != NULL)
             {
+                // std::cout << "[reduced beads]" <<std::endl; 
                 // ShowDepth(LastDepth);
             }   
             else
@@ -109,58 +114,94 @@ class Path_Finder
         if (did_find_path == true)
             HeadMessage = LinkedMessage(HeadList, final_bead, ego, goal); // 만약 경로를 찾았다면 Message생성
 
-        for (int i = 0; final_bead->upper_bead != NULL; i++)
-        {
-            std::cout << final_bead->road_id << "  ";
-            final_bead = final_bead->upper_bead;
-        }
-
         DeleteDepth(HeadDepth); // 생성했던 Depth, Bead들 전부 삭제
 
         return HeadMessage;
+    }
+
+    void ShowPath(MessagePtr Path)
+    {
+        MessagePtr temp = Path;
+        for (int i = 0; ; i++)
+        {
+            
+            if (temp->link == NULL)
+            {
+                std::cout << i+1 <<"th Message : " << temp->departure_id << " to " << temp->arrival_id;
+                std::cout << "  lane_cond : ";
+                for(int j=0;j<MAX_LANE_NUM;j++)
+                    if (temp->lane_cond[j] != 0)
+                        std::cout << g_Lane_str[temp->lane_cond[j]] << " ";
+                std::cout << " pass_type : " << g_Passtype_str[temp->passtype] << std::endl;
+                break;
+            }
+            std::cout << i+1 <<"th Message : " << temp->departure_id << " to " << temp->arrival_id;
+            std::cout << "  lane_cond : ";
+            for(int j=0;j<MAX_LANE_NUM;j++)
+                if (temp->lane_cond[j] != 0)
+                    std::cout << g_Lane_str[temp->lane_cond[j]] << " ";
+            std::cout << " pass_type : " << g_Passtype_str[temp->passtype] << std::endl;
+            temp = temp->link;
+        }
+        std::cout << std::endl;
+    }
+
+    void DeletePath(MessagePtr Path)
+    {
+        if (Path->link != NULL)
+            DeletePath(Path->link);
+        delete Path;
     }
 
     private:
 
     MessagePtr LinkedMessage(NodePtr * HeadList, BeadPtr final_bead, int ego, int goal)
     {
-        MessagePtr TailMessage = MakeMessage();
-        MessagePtr LastMessage = TailMessage;
-        NodePtr NowNode = NULL;
-        for (int i = 0; final_bead->upper_bead != NULL; i++)
-        {   
-            MessagePtr temp = NULL;
+        int arrival = goal;
+        int departure = final_bead->road_id;
+        MessagePtr LastMessage = NULL;
+        MessagePtr tempMessage = NULL;
+
+        for (int i = 0; ; i++)
+        {
+            MessagePtr NewMessage = MakeMessage();
+            NodePtr NowNode = SearchNode(HeadList, departure, arrival);
+
+            NewMessage->departure_id = departure;
+            NewMessage->arrival_id = arrival;
+            for (int j = 0; j < MAX_LANE_NUM; j++)
+                NewMessage->lane_cond[j] = NowNode->lanes[j];
+            NewMessage->passtype = NowNode->passtype;
+            
             if (i == 0)
-            {
-                temp = TailMessage;
-                temp->arrival_id = goal;
-                temp->departure_id = final_bead->road_id;
-                NowNode = SearchLinkedList(HeadList, temp->departure_id , temp->arrival_id);
-                *(temp->lane_cond) = *(NowNode->lanes);
-                temp->passtype = NowNode->passtype;
-            }
+                LastMessage = NewMessage;
             else
             {
-                
+                LastMessage->prev_link = NewMessage;
+                NewMessage->link = LastMessage;
+                LastMessage = NewMessage;
             }
 
-            final_bead = final_bead->upper_bead; // 다음 bead로 이동
+            if(final_bead->road_id == ego)
+                break;
+            
+            final_bead = final_bead->upper_bead;
+
+            arrival = departure;
+            departure = final_bead->road_id;
+
         }
         
-
-
-        return Head_Message;
+        return LastMessage;
     }
 
-    NodePtr SearchLinkedList(NodePtr * HeadList, int departure_id, int arrival_id)
+    NodePtr SearchNode(NodePtr * HeadList, int departure_id, int arrival_id)
     {
         NodePtr temp = HeadList[departure_id - 1];
         for (int i = 0; temp->road_id != arrival_id; i++)
-        {
             temp = temp->link;
-        }
 
-        return temp
+        return temp;
     }
 
     MessagePtr MakeMessage()
@@ -205,9 +246,15 @@ class Path_Finder
         for (int i = 0; i < Bead_num; i++) 
         {
             if (temp_2->cost_sum >= *Min_cost_sum) // 찾은 비드보다 cost_sum이 높은 bead 삭제
+            {
+                // std::cout << "reason : over Min_cost" << std::endl;
                 DeleteBead(&temp_2, prev);
+            }
             else if(checkbeadlist[i] >= 10) // 갔던 길을 다시 가는 경우의 bead 삭제
+            {
+                // std::cout << "reason : loop" << std::endl;
                 DeleteBead(&temp_2, prev);
+            }
             else
             {
                 prev = &(temp_2->link); // prev 현제 bead로 이동

@@ -232,7 +232,7 @@
                 {
                     "road" : "R29",
                     "road_id" : 29,
-                    "lane_cond" : ["1HR"],
+                    "lane_cond" : ["1HL"],
                     "pass_type" : "Left",
                     "cost" : 0
                 },

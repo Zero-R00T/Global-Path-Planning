@@ -124,7 +124,7 @@ class Linked_List
         //임시적인 cost 계산법 추후에 수정필요
         float cost_sum = 0;
         float coef_road_length(1), coef_lane_num(1), coef_lane_cond_num(1);
-        float coef_passtype[5] = {10000000, 100, 85, 150, 200};
+        float coef_passtype[5] = {10000000, 100, 85, 150, 350};
 
         cost_sum += coef_road_length * road_length;
         cost_sum += coef_lane_num * lane_num;
